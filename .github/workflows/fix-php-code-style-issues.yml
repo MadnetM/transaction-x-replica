@@ -1,27 +1,23 @@
-name: Fix PHP code style issues
-
-on:
-  push:
-    paths:
-      - '**.php'
-
-permissions:
-  contents: write
-
 jobs:
   php-code-styling:
+    permissions: write-all
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Fix PHP code style issues
-        uses: aglipanci/laravel-pint-action@2.3.0
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Fix styling
+    - name: Collect Workflow Telemetry
+      uses: Nfsaavedra/workflow-telemetry-action@raw_data
+      with:
+        save_raw_stats: true
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+    - name: Fix PHP code style issues
+      uses: aglipanci/laravel-pint-action@2.3.0
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: Fix styling
+name: Fix PHP code style issues
+'on':
+- workflow_dispatch
+permissions: write-all
