@@ -2,6 +2,4 @@
 
 namespace RajenTrivedi\TransactionX;
 
-class TransactionX
-{
-}
+class TransactionX {}
